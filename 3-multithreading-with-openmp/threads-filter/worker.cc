@@ -8,17 +8,20 @@ void append_vec(std::vector<long> &v1, std::vector<long> &v2) {
 
 
 void filter(const long n, const long m, float *data, const float threshold, std::vector<long> &result_row_ind) {
-  
+
+#pragma omp parallel for
   //work on one row at a time
   for (long i = 0; i < n; i++){
     float sum = 0.0f;
+
     //compute sum of all the elements in a row
     for (long j = 0; j < m; j++) {
       sum += data[i*m + j];
-    } 
+    }
     
     //store the sum in an array(vector) only if it is valid (i.e if it is greater than threshold
-    if (sum > threshold) 
+    if (sum > threshold)
+    #pragma omp critical
       result_row_ind.push_back(i);
   }
   

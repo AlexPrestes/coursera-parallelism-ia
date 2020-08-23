@@ -1,6 +1,5 @@
 CXX=icpc
-#CXXFLAGS=-xMIC-AVX512 -qopenmp -mkl -std=c++11
-CXXFLAGS=-xhost -qopenmp -mkl -std=c++11
+CXXFLAGS=-xMIC-AVX512 -qopenmp -mkl -std=c++11
 OPTRPT=-qopt-report=5
 
 default : app
